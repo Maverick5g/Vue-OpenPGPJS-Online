@@ -1,0 +1,18 @@
+
+body { font-size: 62.5%; }
+#container {
+    font-size: 62.5%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 2%;
+    border: 4px solid #efefef;
+    padding: 0px 20px;
+    color: #444;
+    font-family: Verdana,helvetica,sans-serif;
+    font-size: 1.25em;
+}
+h1 { color: #6D84B4; font-size: 1.5em; }
+#footer { text-align: right; margin-top: 25px; }
+@media print {#ghostery-purple-box {display:none !important}}
+.FotorFrame{position:fixed!important}
+.weui-desktop-online-faq__wrp{top:304px!important;bottom:none!important}.weui-desktop-online-faq__wrp .weui-desktop-online-faq__switch{width:38px!important}
