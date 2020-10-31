@@ -16,7 +16,7 @@ const encrypt = {
             <form class="was-validated">
                 <div class="mb-3">
                 <label for="validationTextarea">Public Key</label>
-                <textarea class="form-control" id="validationTextarea" placeholder="Public Key" style="height: 10cm;" required></textarea>
+                <textarea v-model="key" class="form-control" id="validationTextarea" placeholder="Public Key" style="height: 10cm;" required></textarea>
                 </div>
             </form>
             <form class="was-validated">
@@ -26,11 +26,21 @@ const encrypt = {
                 </div>
             </form>
             <br>
-            <button class="btn btn-primary" onclick="encrypt()">Encrypt it!</button><br>
+            <button class="btn btn-primary" v-on:click="encrypt">Encrypt it!</button><br>
             <br>
             <router-link to="/">Go back</router-link>
             </div>
     `,
+    data() {
+        return {
+            key: null
+        }
+    },
+    methods: {
+        encrypt() {
+            console.log(this.key)
+        }
+    }
 }
 
 const routes = [
