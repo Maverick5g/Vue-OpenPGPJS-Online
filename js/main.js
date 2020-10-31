@@ -1,10 +1,24 @@
 const home = {
     template: `
-        <div id="container">
-            <br>
-            <h1>OpenPGP.JS</h1>
-            <p>本站工具可以帮助你轻松的 <router-link to="/encrypt">加密</router-link>，<router-link to="/decrypt">解密</router-link>，<router-link to="/sign">签名</router-link>和<router-link to="/verify">验证</router-link></p>
+           <div id="home" class="container">
+            <router-link to="/encrypt"><card data-image="https://cdn.wallpaperhub.app/cloudcache/b/0/e/3/8/9/b0e389143d346e9a35b20141f714d8f03de7c788.jpg">
+                <h1 slot="header">加密</h1>
+                <p slot="content">提供您的公钥和要加密的信息。</p>
+            </card></router-link>
+            <card data-image="https://cdn.wallpaperhub.app/cloudcache/5/f/a/f/e/c/5fafec1374353c8c15ddf4c185efb7968e56dfa6.jpg">
+                <h1 slot="header">解密</h1>
+                <p slot="content">提供您的私钥和加密后信息。</p>
+            </card>
+            <card data-image="https://cdn.wallpaperhub.app/cloudcache/b/5/5/1/c/6/b551c68f2b9bc6084675b8a3c031ab04aedeb272.jpg">
+                <h1 slot="header">签名</h1>
+                <p slot="content">提供您的私钥和签名内容。</p>
+            </card>
+            <card data-image="https://cdn.wallpaperhub.app/cloudcache/4/3/2/8/6/c/43286c59ca230daed57457fd247367af729dea7d.jpg">
+                <h1 slot="header">验证</h1>
+                <p slot="content">提供您的公钥</p>
+            </card>
         </div>
+
     `
 };
 
