@@ -9,10 +9,10 @@ const home = {
                 <h1 slot="header">解密</h1>
                 <p slot="content">提供您的私钥和加密后信息。</p>
             </card></router-link>
-            <card data-image="https://cdn.wallpaperhub.app/cloudcache/b/5/5/1/c/6/b551c68f2b9bc6084675b8a3c031ab04aedeb272.jpg">
+            <router-link to="/sign"><card data-image="https://cdn.wallpaperhub.app/cloudcache/b/5/5/1/c/6/b551c68f2b9bc6084675b8a3c031ab04aedeb272.jpg">
                 <h1 slot="header">签名</h1>
                 <p slot="content">提供您的私钥和要签名内容。</p>
-            </card>
+            </card></router-link>
             <card data-image="https://cdn.wallpaperhub.app/cloudcache/4/3/2/8/6/c/43286c59ca230daed57457fd247367af729dea7d.jpg">
                 <h1 slot="header">验证</h1>
                 <p slot="content">提供对方的公钥和签名后消息。</p>
@@ -146,6 +146,61 @@ const decrypt = {
   },
 };
 
+const sign = {
+  template: `
+  <div id="sign">
+      <br>
+      <p>Sign</p>
+      <form class="was-validated">
+          <div class="mb-3">
+            <label for="validationTextarea">Private Key</label>
+            <textarea v-model="key" class="form-control" id="validationTextarea" placeholder="Private Key" style="height: 10cm;" required></textarea>
+          </div>
+      </form>
+      <form class="was-validated">
+          <div class="mb-3">
+            <label for="validationTextarea">Message</label>
+            <textarea v-model="msg" class="form-control" id="validationTextarea" placeholder="Message" style="height: 10cm;" required></textarea>
+          </div>
+          <div class="form-group">
+              <label for="inputPassword4">Password</label>
+              <input v-model="password" type="password" class="form-control" id="inputPassword4" required>
+          </div>
+      </form>
+      <br>
+      <button class="btn btn-primary" v-on:click="sign">Sign it!</button><br>
+      <br>
+  </div>
+  `,
+
+  data: () => ({
+    key: null,
+    password: null,
+    msg: null,
+  }),
+
+  methods: {
+    async sign() {
+      try {
+        const {
+          keys: [privateKey],
+        } = await openpgp.key.readArmored(this.key);
+
+        await privateKey.decrypt(this.password);
+
+        const { data: cleartext } = await openpgp.sign({
+          message: openpgp.cleartext.fromText(this.msg),
+          privateKeys: [privateKey],
+        });
+
+        console.log(cleartext);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  },
+};
+
 const routes = [
   {
     path: "/",
@@ -158,6 +213,10 @@ const routes = [
   {
     path: "/decrypt",
     component: decrypt,
+  },
+  {
+    path: "/sign",
+    component: sign,
   },
 ];
 
