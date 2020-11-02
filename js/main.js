@@ -24,26 +24,32 @@ const home = {
 
 const encrypt = {
   template: `
-        <div id="encrypt">
-            <br>
-            <p>Encrypt</p>
-            <form class="was-validated">
-                <div class="mb-3">
-                <label for="validationTextarea">Public Key</label>
-                <textarea v-model="key" class="form-control" id="validationTextarea" placeholder="Public Key" style="height: 10cm;" required></textarea>
-                </div>
-            </form>
-            <form class="was-validated">
-                <div class="mb-3">
-                <label for="validationTextarea">Message</label>
-                <textarea v-model="msg" class="form-control" id="validationTextarea" placeholder="Message" style="height: 10cm;" required></textarea>
-                </div>
-            </form>
-            <br>
-            <button class="btn btn-primary" v-on:click="encrypt">Encrypt it!</button><br>
-            <br>
-            <router-link to="/">Go back</router-link>
+       <div class="container cards">
+    <div class="cards__item">
+        <div class="mycard">
+            <div class="mytextarea">
+                <textarea rows="3" v-model="key" id="validationTextarea" placeholder="在这填写您的公钥"></textarea>
             </div>
+            <div class="card__content">
+                <div class="card__title">Public Key</div>
+                <p class="card__text">请确保您的公钥匙完整性。</p>
+                <div style="height:42px "></div>
+            </div>
+        </div>
+    </div>
+    <div class="cards__item">
+        <div class="mycard">
+            <div class="mytextarea">
+                <textarea rows="3" v-model="msg" id="validationTextarea"  placeholder="在这填写需要加密的信息"></textarea>
+            </div>
+            <div class="card__content">
+                <div class="card__title">Message</div>
+                <p class="card__text">随便写点什么。</p>
+                <button class="btn btn--block card__btn" v-on:click="encrypt">加密</button>
+            </div>
+        </div>
+    </div>
+</div>
     `,
 
   data: () => ({
